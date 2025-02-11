@@ -5,24 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Equipo {
-    private String id_equipo;
+    private String idEquipo;
     private String nombre;
-    private LocalDate fecha_fund;
+    private LocalDate fechaFund;
     private List<Jugador> listajugadores;
 
-    public Equipo(String id_equipo, String nombre, LocalDate fecha_fund) {
-        this.id_equipo = id_equipo;
+    public Equipo(String idEquipo, String nombre, LocalDate fechaFund) {
+        this.idEquipo = idEquipo;
         this.nombre = nombre;
-        this.fecha_fund = fecha_fund;
+        this.fechaFund = fechaFund;
         this.listajugadores = new ArrayList<>();
     }
 
     public String getId_equipo() {
-        return id_equipo;
+        return idEquipo;
     }
 
-    public void setId_equipo(String id_equipo) {
-        this.id_equipo = id_equipo;
+    public void setIdEquipo(String idEquipo) {
+        this.idEquipo = idEquipo;
     }
 
     public String getNombre() {
@@ -33,12 +33,12 @@ public class Equipo {
         this.nombre = nombre;
     }
 
-    public LocalDate getFecha_fund() {
-        return fecha_fund;
+    public LocalDate getFechaFund() {
+        return fechaFund;
     }
 
-    public void setFecha_fund(LocalDate fecha_fund) {
-        this.fecha_fund = fecha_fund;
+    public void setFecha_fund(LocalDate fechaFund) {
+        this.fechaFund = fechaFund;
     }
 
     public List<Jugador> getListajugadores() {
