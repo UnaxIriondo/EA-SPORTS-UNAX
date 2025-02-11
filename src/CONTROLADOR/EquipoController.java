@@ -17,45 +17,4 @@ public class EquipoController {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public String solicitarDato(String dato, String mensaje,String expresionRegular)
-    {
-        String variable = "";
-        boolean error;
-        do
-        {
-            try {
-                variable = JOptionPane.showInputDialog(mensaje);
-                if (variable.isEmpty())
-                    throw new DatoNoValido(dato + " es un campo obligatorio");
-                Pattern pat = Pattern.compile(expresionRegular);
-                Matcher mat = pat.matcher(variable);
-                if (!mat.matches())
-                    throw new DatoNoValido(dato + " no tiene un formato adecuado");
-                error = false;
-            } catch (DatoNoValido e) {
-                error = true;
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-        }
-        while(error);
-        return variable;
-    }
 }
