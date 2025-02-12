@@ -4,10 +4,9 @@ import EXCEPTIONS.DatoNoValido;
 import MODELO.Equipo;
 import MODELO.EquipoDAO;
 import MODELO.tipoEquipo;
+import UTILITIS.CodigoAleatorioUnico;
 import UTILITIS.SolicitarValidarDatos;
 
-
-import java.lang.classfile.constantpool.StringEntry;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -22,32 +21,33 @@ public class EquipoController {
         this.equipoDAO = new EquipoDAO();// Inicializa el DAO
         this.sc = new Scanner(System.in);
     }
-
-    public static void agregarEquipos(){
+    public void agregarEquipos(){
         System.out.println("\n--- Agregar Nuevo Equipo ---");
 
         String nombre = SolicitarValidarDatos.solicitarDato("Nombre", "Ingrese el nombre del equipo: ", "^[A-Za-zÁ-Úá-ú\\s]{2,50}$");
         LocalDate fechaFund = validarFecha("Fecha de fundacion","Teclea la fecha de fundacion del equipo");
-        String tipoEquipo = SolicitarValidarDatos.solicitarDato("Tipo de equipo","Teclea el tipo de equipo que seras (Atacante o Defensor)","[Atacante|Defensor]");
+        String tipoStr  = SolicitarValidarDatos.solicitarDato("Tipo de equipo","Teclea el tipo de equipo que seras (Atacante o Defensor)","[Atacante|Defensor]");
+        tipoEquipo tipo = tipoEquipo.valueOf(tipoStr.toUpperCase());
 
-        String idEquipo = generarIdAleatorio();
+        String idEquipo = CodigoAleatorioUnico.generarCodigoUnico();
 
-        Equipo equipo = new Equipo(idEquipo,nombre,fechaFund,tipoEquipo,new ArrayList<>(),new ArrayList<>());
+        Equipo equipo = new Equipo(idEquipo,nombre,fechaFund,tipo ,new ArrayList<>(),new ArrayList<>());
         boolean agregado = equipoDAO.agregarEquipo(equipo);
         if (agregado){
             System.out.println("Equipo agregado correctamente");
         }else {
             System.out.println("Error: El equipo ya existe");
         }
-
     }
-    public static  void actualizarDatosEquipo(){
-
-        String idEquipo = SolicitarValidarDatos.solicitarDato("Id Equipo","Teclea el id del equipo","");
-        String nombre = SolicitarValidarDatos.solicitarDato("Nombre","Teclea el nombre del equipo","^[A-Z][a-zA-ZñÑ ]{1,19}$");
-        LocalDate fechaFund = validarFecha("Fecha de fundacion","Teclea la fecha de fundacion del equipo");
-        tipoEquipo tipoEquipo= MODELO.tipoEquipo.valueOf(SolicitarValidarDatos.solicitarDato("Tipo de Equipo","Teclea el tipo de equipo que seras (Atacante o Defensor)","[Atacante|Defensor]"));
-
+    public void eliminarEquipo(){
+        System.out.println("\n--- Eliminar Equipo ---");
+        String idEquipo = SolicitarValidarDatos.solicitarDato("ID del Equipo", "Ingrese el ID del equipo a eliminar: ", "");
+        boolean eliminado = equipoDAO.eliminarEquipo(idEquipo);
+        if (eliminado){
+            System.out.println("Equipo eliminado correctamente");
+        }else {
+            System.out.println("Error: No se encontro el equipo con el ID proporcionado");
+            }
     }
 
 
@@ -56,13 +56,6 @@ public class EquipoController {
 
 
 
-
-
-
-
-    private String generarIdAleatorio() {
-        return "E" + (int) (Math.random() * 1000); // Ejemplo: E123
-    }
     public static LocalDate validarFecha(String dato, String mensaje){
         Scanner sc = new Scanner(System.in);
         boolean error = true;
