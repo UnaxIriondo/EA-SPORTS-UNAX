@@ -10,6 +10,9 @@ public class Juego {
         this.juego = juego;
     }
 
+    public Juego() {
+    }
+
     public int getIdJuego() {
         return idJuego;
     }

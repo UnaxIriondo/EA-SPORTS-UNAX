@@ -14,7 +14,9 @@ public class Jugador {
     private Roles rol;
 
     //Constructor
-    public Jugador() {}
+    public Jugador() {
+
+    }
 
     public Jugador(String idJugador, String nombre, String apellido, String nacionalidad, LocalDate fechaNac, double sueldo, Equipo equipo, Roles rol) {
         this.idJugador = idJugador;
