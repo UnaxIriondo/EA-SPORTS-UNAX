@@ -8,21 +8,42 @@ public class Equipo {
     private String idEquipo;
     private String nombre;
     private LocalDate fechaFund;
-    private List<Jugador> listajugadores;
+    private List<Jugador> listaJugadores;
+    private List<Enfrentamiento> listaEnfrentamientos;
 
-    public Equipo(String idEquipo, String nombre, LocalDate fechaFund) {
+    public Equipo(String idEquipo, String nombre, LocalDate fechaFund, List<Jugador> listaJugadores, List<Enfrentamiento> listaEnfrentamientos) {
         this.idEquipo = idEquipo;
         this.nombre = nombre;
         this.fechaFund = fechaFund;
-        this.listajugadores = new ArrayList<>();
+        this.listaJugadores = listaJugadores;
+        this.listaEnfrentamientos = listaEnfrentamientos;
     }
 
-    public String getId_equipo() {
-        return idEquipo;
+    public Equipo() {
     }
 
-    public void setIdEquipo(String idEquipo) {
-        this.idEquipo = idEquipo;
+    public List<Enfrentamiento> getListaEnfrentamientos() {
+        return listaEnfrentamientos;
+    }
+
+    public void setListaEnfrentamientos(List<Enfrentamiento> listaEnfrentamientos) {
+        this.listaEnfrentamientos = listaEnfrentamientos;
+    }
+
+    public List<Jugador> getListaJugadores() {
+        return listaJugadores;
+    }
+
+    public void setListaJugadores(List<Jugador> listaJugadores) {
+        this.listaJugadores = listaJugadores;
+    }
+
+    public LocalDate getFechaFund() {
+        return fechaFund;
+    }
+
+    public void setFechaFund(LocalDate fechaFund) {
+        this.fechaFund = fechaFund;
     }
 
     public String getNombre() {
@@ -33,19 +54,11 @@ public class Equipo {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaFund() {
-        return fechaFund;
+    public String getIdEquipo() {
+        return idEquipo;
     }
 
-    public void setFecha_fund(LocalDate fechaFund) {
-        this.fechaFund = fechaFund;
-    }
-
-    public List<Jugador> getListajugadores() {
-        return listajugadores;
-    }
-
-    public void setListajugadores(List<Jugador> listajugadores) {
-        this.listajugadores = listajugadores;
+    public void setIdEquipo(String idEquipo) {
+        this.idEquipo = idEquipo;
     }
 }

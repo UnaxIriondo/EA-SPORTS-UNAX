@@ -1,5 +1,6 @@
 package MODELO;
 
+import javax.management.relation.Role;
 import java.time.LocalDate;
 
 public class Jugador {
@@ -8,23 +9,24 @@ public class Jugador {
     private String apellido;
     private String nacionalidad;
     private LocalDate fechaNac;
-    private rolJugador rolJugador;
     private double sueldo;
+    private Equipo equipo;
+    private Roles rol;
 
     //Constructor
     public Jugador() {}
 
-    public Jugador(String idJugador, String nombre, String apellido, String nacionalidad, LocalDate fechaNac, MODELO.rolJugador rolJugador, double sueldo) {
+    public Jugador(String idJugador, String nombre, String apellido, String nacionalidad, LocalDate fechaNac, double sueldo, Equipo equipo, Roles rol) {
         this.idJugador = idJugador;
         this.nombre = nombre;
         this.apellido = apellido;
         this.nacionalidad = nacionalidad;
         this.fechaNac = fechaNac;
-        this.rolJugador = rolJugador;
         this.sueldo = sueldo;
+        this.equipo = equipo;
+        this.rol = rol;
     }
-
-    //Get y Set
+//Get y Set
 
     public String getIdJugador() {
         return idJugador;
@@ -66,19 +68,27 @@ public class Jugador {
         this.fechaNac = fechaNac;
     }
 
-    public MODELO.rolJugador getRolJugador() {
-        return rolJugador;
-    }
-
-    public void setRolJugador(MODELO.rolJugador rolJugador) {
-        this.rolJugador = rolJugador;
-    }
-
     public double getSueldo() {
         return sueldo;
     }
 
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
+    public Roles getRol() {
+        return rol;
+    }
+
+    public void setRol(Roles rol) {
+        this.rol = rol;
     }
 }

@@ -2,20 +2,16 @@ package MODELO;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Enfrentamiento {
     private String idEnfrentamiento;
     private String resultado;
     private LocalDate fecha;
     private LocalTime hora;
-    private String[] equipos;
+    private ArrayList<Equipo> listaEquipos;
 
-    public Enfrentamiento(String id_enfrentamiento, String resultado, LocalDate fecha, LocalTime hora, String[] equipos) {
-        this.idEnfrentamiento = id_enfrentamiento;
-        this.resultado = resultado;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.equipos = equipos;
+    public Enfrentamiento() {
     }
 
     public String getIdEnfrentamiento() {
@@ -50,11 +46,11 @@ public class Enfrentamiento {
         this.hora = hora;
     }
 
-    public String[] getEquipos() {
-        return equipos;
+    public ArrayList<Equipo> getListaEquipos() {
+        return listaEquipos;
     }
 
-    public void setEquipos(String[] equipos) {
-        this.equipos = equipos;
+    public void setListaEquipos(ArrayList<Equipo> listaEquipos) {
+        this.listaEquipos = listaEquipos;
     }
 }

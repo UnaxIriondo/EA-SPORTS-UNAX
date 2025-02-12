@@ -7,22 +7,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try {
-            int respuesta;
+            int respuesta = 0;
             boolean cont = true;
             do {
-                System.out.println("""
-                 --Bienvenido a EA-SPORTS--
-                 ===MENU DE INICIO===
-                 1.Registrar Equipo
-                 2.Registrar Jornada
-                 3.Registrar Enfrentamiento
-                 4.Mostrar Informacion
-                 5.Salir del programa
-                        
-                Teclea la opción deseada:""");
-
-                respuesta = scanner.nextInt();
-
                 switch (respuesta) {
                     case 1:
                         break;

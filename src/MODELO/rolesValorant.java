@@ -1,6 +1,6 @@
 package MODELO;
 
-public enum rolJugador {
+public enum rolesValorant {
    duelista,centinela,controlador,iniciador
 
 }
