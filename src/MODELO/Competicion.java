@@ -1,12 +1,19 @@
 package MODELO;
 
+import java.util.List;
+
 public class Competicion {
     private String idCompeticion;
-    estadoCompeticion estado;
+    private estadoCompeticion estado;
+    private List<Jornada> listaJornadas;
 
-    public Competicion(String idCompeticion, estadoCompeticion estado) {
+    public Competicion() {
+    }
+
+    public Competicion(String idCompeticion, estadoCompeticion estado, List<Jornada> listaJornadas) {
         this.idCompeticion = idCompeticion;
         this.estado = estado;
+        this.listaJornadas = listaJornadas;
     }
 
     public String getIdCompeticion() {
@@ -23,5 +30,13 @@ public class Competicion {
 
     public void setEstado(estadoCompeticion estado) {
         this.estado = estado;
+    }
+
+    public List<Jornada> getListaJornadas() {
+        return listaJornadas;
+    }
+
+    public void setListaJornadas(List<Jornada> listaJornadas) {
+        this.listaJornadas = listaJornadas;
     }
 }
