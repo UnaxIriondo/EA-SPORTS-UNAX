@@ -8,6 +8,7 @@ public class Equipo {
     private String idEquipo;
     private String nombre;
     private LocalDate fechaFund;
+    private tipoEquipo tipoEquipo;
     private List<Jugador> listaJugadores;
     private List<Enfrentamiento> listaEnfrentamientos;
 
