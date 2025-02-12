@@ -6,15 +6,18 @@ public class Competicion {
     private String idCompeticion;
     private estadoCompeticion estado;
     private List<Jornada> listaJornadas;
+    private Equipo ganador;
 
     public Competicion() {
     }
 
-    public Competicion(String idCompeticion, estadoCompeticion estado, List<Jornada> listaJornadas) {
+    public Competicion(String idCompeticion, estadoCompeticion estado, List<Jornada> listaJornadas, Equipo ganador) {
         this.idCompeticion = idCompeticion;
         this.estado = estado;
         this.listaJornadas = listaJornadas;
+        this.ganador = ganador;
     }
+
 
     public String getIdCompeticion() {
         return idCompeticion;
@@ -38,5 +41,13 @@ public class Competicion {
 
     public void setListaJornadas(List<Jornada> listaJornadas) {
         this.listaJornadas = listaJornadas;
+    }
+
+    public Equipo getGanador() {
+        return ganador;
+    }
+
+    public void setGanador(Equipo ganador) {
+        this.ganador = ganador;
     }
 }
