@@ -1,7 +1,9 @@
 package CONTROLADOR;
 
+import EXCEPTIONS.TipoJuegoException;
 import MODELO.Competicion;
 import MODELO.CompeticionDAO;
+import MODELO.tipoJuego;
 import UTILITIS.SolicitarValidarDatos;
 
 public class CompeticionController {
@@ -11,6 +13,8 @@ public class CompeticionController {
         System.out.println("---DATOS COMPETICION---");
         System.out.println("Estado: " + CompeticionDAO.abrirCompeticion(competicion).getEstado());
         System.out.println("ID: " + CompeticionDAO.abrirCompeticion(competicion).getIdCompeticion());
+        System.out.println("Juego: " + CompeticionDAO.abrirCompeticion(competicion).getJuego());
+
         return competicion;
 
     }

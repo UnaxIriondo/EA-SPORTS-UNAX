@@ -20,8 +20,9 @@ public class Equipo {
         this.listaJugadores = listaJugadores;
         this.listaEnfrentamientos = listaEnfrentamientos;
     }
-
     public Equipo() {
+        this.listaJugadores = new ArrayList<>();
+        this.listaEnfrentamientos = new ArrayList<>();
     }
 
     public String getIdEquipo() {
