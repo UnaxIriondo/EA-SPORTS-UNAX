@@ -1,32 +1,30 @@
 package MAIN;
 
+import CONTROLADOR.CompeticionController;
+import MODELO.Competicion;
+import VISTA.Menus;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        String respuesta;
         try {
-            int respuesta = 0;
-            boolean cont = true;
             do {
+                respuesta = Menus.menuCompeticion();
                 switch (respuesta) {
-                    case 1:
+                    case "1":
+                        CompeticionController.abrirCompeticion();
                         break;
-                    case 2:
+                    case "2":  
                         break;
-                    case 3:
-                           break;
-                    case 4:
-                        break;
-                    case 5:
-                        System.out.println("El programa finaliza");
-                        break;
-                        default: System.out.println("Opcion no existe");
                 }
-            } while (respuesta != 5);
+            }while(!respuesta.equals("2"));
         } catch (Exception e) {
-            System.out.println("Error desconocido en el menu");
+            System.out.println("Error desconocido en el menu.");
         }
     }
 }
