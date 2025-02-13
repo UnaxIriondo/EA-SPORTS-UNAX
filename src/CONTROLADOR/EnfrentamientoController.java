@@ -8,6 +8,19 @@ import UTILITIS.SolicitarValidarDatos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+
+
+
+import MODELO.Enfrentamiento;
+import MODELO.Equipo;
+import MODELO.Jornada;
+import MODELO.tipoEquipo;
+import UTILITIS.SolicitarValidarDatos;
+
+import java.sql.SQLOutput;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -48,6 +61,21 @@ public class EnfrentamientoController {
             jornada.getEnfrentamientos().remove(enfrentamientoparaeliminar);
             System.out.println("Enfrentamiento eliminado");
         }else {System.out.println("Enfrentamiento no encontrado");}
+        System.out.println("Escribe el ID del enfrentamiento que quieras eliminar");
+       Scanner sc = new Scanner(System.in);
+        String idEnfrentamiento = sc.nextLine();
+
+        Enfrentamiento enfrentamientoparaeliminar = new Enfrentamiento();
+        for (Enfrentamiento enfrentamiento : jornada.getEnfrentamientos())  {
+        if (enfrentamiento.getIdEnfrentamiento().equals(idEnfrentamiento)) {
+            enfrentamientoparaeliminar = enfrentamiento;
+            break;
+        }
+        }
+    if (enfrentamientoparaeliminar != null) {
+        jornada.getEnfrentamientos().remove(enfrentamientoparaeliminar);
+        System.out.println("Enfrentamiento eliminado");
+    }else {System.out.println("Enfrentamiento no encontrado");}
     };
 
 

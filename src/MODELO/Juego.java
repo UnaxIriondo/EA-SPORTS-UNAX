@@ -2,12 +2,15 @@ package MODELO;
 
 public class Juego {
     private int idJuego;
-    tipoJuego juego;
+    private tipoJuego juego;
     private Competicion competicion; //Relacion objeto competicion
 
     public Juego(int idJuego, tipoJuego juego) {
         this.idJuego = idJuego;
         this.juego = juego;
+    }
+
+    public Juego() {
     }
 
     public int getIdJuego() {
