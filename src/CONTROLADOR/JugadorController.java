@@ -8,12 +8,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class JugadorController {
     public JugadorController() {
-        this.listaJugadores = new ArrayList();
+        this.listajugadores = new ArrayList();
     }
 
     public static void agregarJugadores(){

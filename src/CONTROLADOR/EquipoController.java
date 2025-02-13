@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EquipoController {
@@ -49,12 +50,34 @@ public class EquipoController {
             System.out.println("Error: No se encontro el equipo con el ID proporcionado");
             }
     }
+    public void modificarEquipo() {
+        System.out.println("\n--- Modificar Equipo ---");
+        String idEquipo = SolicitarValidarDatos.solicitarDato("ID del Equipo", "Ingrese el ID del equipo a modificar: ", "[0-9]{5}");
 
+        String nuevoNombre = SolicitarValidarDatos.solicitarDato("Nuevo Nombre", "Ingrese el nuevo nombre del equipo: ", "^[A-Za-zÁ-Úá-ú\\s]{2,50}$");
+        LocalDate nuevaFecha = validarFecha("Nueva Fecha de Fundación", "Ingrese la nueva fecha de fundación (dd/MM/yyyy): ");
+        String nuevoTipoStr = SolicitarValidarDatos.solicitarDato("Nuevo Tipo de Equipo", "Ingrese el nuevo tipo de equipo (ATACANTE,DEFENSOR): ", "^(PROFESIONAL|AMATEUR|JUVENIL)$");
+        tipoEquipo nuevoTipo = tipoEquipo.valueOf(nuevoTipoStr.toUpperCase());
 
+        boolean modificado = equipoDAO.modificarEquipo(idEquipo, nuevoNombre, nuevaFecha, nuevoTipo);
+        if (modificado) {
+            System.out.println("Equipo modificado correctamente.");
+        } else {
+            System.out.println("Error: No se encontró el equipo con el ID proporcionado.");
+        }
+    }
 
-
-
-
+    public void listarEquipos() {
+        System.out.println("\n--- Lista de Equipos ---");
+        List<Equipo> equipos = equipoDAO.listarEquipos();
+        if (equipos.isEmpty()) {
+            System.out.println("No hay equipos registrados.");
+        } else {
+            for (Equipo equipo : equipos) {
+                System.out.println(equipo);
+            }
+        }
+    }
 
 
     public static LocalDate validarFecha(String dato, String mensaje){
