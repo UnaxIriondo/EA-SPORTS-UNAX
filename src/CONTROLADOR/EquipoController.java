@@ -56,6 +56,7 @@ public class EquipoController {
 
 
 
+
     public static LocalDate validarFecha(String dato, String mensaje){
         Scanner sc = new Scanner(System.in);
         boolean error = true;
