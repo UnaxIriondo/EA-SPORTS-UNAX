@@ -1,27 +1,32 @@
 package CONTROLADOR;
 
 import EXCEPTIONS.TipoJuegoException;
-import MODELO.Competicion;
-import MODELO.CompeticionDAO;
-import MODELO.tipoJuego;
+import MODELO.*;
+import UTILITIS.CodigoAleatorioUnico;
+import UTILITIS.ComprobarTipoJuego;
 import UTILITIS.SolicitarValidarDatos;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class CompeticionController {
-    private static Competicion competicion = new Competicion();
+    private static Competicion competicion;
+    private static List<Competicion> competiciones = new ArrayList<Competicion>();
 
     public static Competicion abrirCompeticion() {
-        System.out.println("---DATOS COMPETICION---");
-        System.out.println("Estado: " + CompeticionDAO.abrirCompeticion(competicion).getEstado());
-        System.out.println("ID: " + CompeticionDAO.abrirCompeticion(competicion).getIdCompeticion());
-        System.out.println("Juego: " + CompeticionDAO.abrirCompeticion(competicion).getJuego());
+        String idCompeticion = CodigoAleatorioUnico.generarCodigo();
+        estadoCompeticion estado = estadoCompeticion.abierto;
+        competicion = new Competicion(idCompeticion,estado);
+        competiciones.add(competicion);
+
+        JuegoController.crearJuego(competicion,competiciones);
 
         return competicion;
 
     }
+
     public static void cerrarCompeticion() {
-        System.out.println("---DATOS COMPETICION---");
-        System.out.println("Estado: " + CompeticionDAO.cerrarCompeticion(competicion).getEstado());
-        System.out.println("ID: " + CompeticionDAO.cerrarCompeticion(competicion).getIdCompeticion());
-        System.out.println("Ganador: " + CompeticionDAO.cerrarCompeticion(competicion).getGanador());
+        estadoCompeticion estado = estadoCompeticion.cerrado;
     }
 }

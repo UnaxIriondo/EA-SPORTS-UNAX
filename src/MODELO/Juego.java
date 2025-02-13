@@ -1,13 +1,45 @@
 package MODELO;
 
+import java.util.List;
+
 public class Juego {
     private int idJuego;
     private tipoJuego juego;
-    private Competicion competicion; //Relacion objeto competicion
+    private List<String> roles;
+    private List<Competicion> competiciones;
+
+    public Juego(int idJuego, tipoJuego juego, List<String> roles) {
+        this.idJuego = idJuego;
+        this.juego = juego;
+        this.roles = roles;
+    }
+
+    public Juego(int idJuego, tipoJuego juego, List<String> roles, List<Competicion> competiciones) {
+        this.idJuego = idJuego;
+        this.juego = juego;
+        this.roles = roles;
+        this.competiciones = competiciones;
+    }
+
+    public List<Competicion> getCompeticiones() {
+        return competiciones;
+    }
+
+    public void setCompeticiones(List<Competicion> competiciones) {
+        this.competiciones = competiciones;
+    }
 
     public Juego(int idJuego, tipoJuego juego) {
         this.idJuego = idJuego;
         this.juego = juego;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 
     public Juego() {

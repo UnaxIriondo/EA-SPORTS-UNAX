@@ -20,6 +20,10 @@ public class Competicion {
         this.juego = juego;
     }
 
+    public Competicion(String idCompeticion, estadoCompeticion estado) {
+        this.idCompeticion = idCompeticion;
+        this.estado = estado;
+    }
 
     public String getIdCompeticion() {
         return idCompeticion;
