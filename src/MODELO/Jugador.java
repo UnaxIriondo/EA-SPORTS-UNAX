@@ -1,7 +1,7 @@
 package MODELO;
 
-import javax.management.relation.Role;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Jugador {
     private String idJugador;
@@ -12,7 +12,7 @@ public class Jugador {
     private double sueldo;
     private Equipo equipo;
     private Roles rol;
-
+    private List<Jugador> listaJugadores;
     //Constructor
     public Jugador() {
 
