@@ -1,6 +1,5 @@
 package MODELO;
 
-import javax.management.relation.Role;
 import java.time.LocalDate;
 import java.util.List;
 
