@@ -12,7 +12,7 @@ public class Equipo {
     private List<Jugador> listaJugadores;
     private List<Enfrentamiento> listaEnfrentamientos;
 
-    public Equipo(String idEquipo, String nombre, LocalDate fechaFund, tipoEquipo tipoEquipo, List<Jugador> listaJugadores, List<Enfrentamiento> listaEnfrentamientos) {
+    public Equipo(String idEquipo, String nombre, LocalDate fechaFund, MODELO.tipoEquipo tipoEquipo, List<Jugador> listaJugadores, List<Enfrentamiento> listaEnfrentamientos) {
         this.idEquipo = idEquipo;
         this.nombre = nombre;
         this.fechaFund = fechaFund;
@@ -23,9 +23,6 @@ public class Equipo {
     public Equipo() {
         this.listaJugadores = new ArrayList<>();
         this.listaEnfrentamientos = new ArrayList<>();
-    }
-
-    public Equipo(String idEquipo, String nombre, LocalDate fechaFund, String tipoEquipo, ArrayList<Jugador> listaJugadores, ArrayList<Enfrentamiento> listaEnfrentamientos) {
     }
 
     public String getIdEquipo() {
@@ -74,5 +71,15 @@ public class Equipo {
 
     public void setListaEnfrentamientos(List<Enfrentamiento> listaEnfrentamientos) {
         this.listaEnfrentamientos = listaEnfrentamientos;
+    }
+
+    @Override
+    public String toString() {
+        return "Equipo{" +
+                "idEquipo='" + idEquipo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", fechaFund=" + fechaFund +
+                ", tipoEquipo=" + tipoEquipo +
+                '}';
     }
 }
