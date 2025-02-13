@@ -1,7 +1,9 @@
 package MAIN;
 
 import CONTROLADOR.CompeticionController;
+import CONTROLADOR.EquipoController;
 import MODELO.Competicion;
+import MODELO.Equipo;
 import VISTA.Menus;
 
 import java.util.ArrayList;

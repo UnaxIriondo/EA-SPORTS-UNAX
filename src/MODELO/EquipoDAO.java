@@ -16,7 +16,7 @@ public class EquipoDAO {
             listaequipos.add(equipo);
             return true;
         }
-        return false; // Si returna false es porque ya existe un equipo
+        return false;
     }
 
     public boolean eliminarEquipo(String idEquipo) {

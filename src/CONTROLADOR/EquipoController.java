@@ -47,7 +47,7 @@ public class EquipoController {
             System.out.println("Equipo eliminado correctamente");
         }else {
             System.out.println("Error: No se encontro el equipo con el ID proporcionado");
-            }
+        }
     }
     public void modificarEquipo() {
         System.out.println("\n--- Modificar Equipo ---");

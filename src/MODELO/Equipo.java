@@ -82,4 +82,21 @@ public class Equipo {
                 ", tipoEquipo=" + tipoEquipo +
                 '}';
     }
+
+    public void agregarJugador(Jugador jugador) {
+        if (listaJugadores == null) {
+            listaJugadores = new ArrayList<>();
+        }
+        listaJugadores.add(jugador);
+    }
+
+    @Override
+    public String toString() {
+        return "Equipo{" +
+                "idEquipo='" + idEquipo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", fechaFund=" + fechaFund +
+                ", tipoEquipo=" + tipoEquipo +
+                '}';
+    }
 }

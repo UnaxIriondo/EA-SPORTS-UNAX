@@ -1,14 +1,13 @@
 package CONTROLADOR;
 
 import EXCEPTIONS.DatoNoValido;
-import MODELO.tipoEquipo;
+import MODELO.*;
 import UTILITIS.SolicitarValidarDatos;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.Locale;
+import java.util.List;
 import java.util.Scanner;
 
 public class JugadorController {
