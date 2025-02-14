@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EquipoController {
@@ -21,25 +22,26 @@ public class EquipoController {
         this.equipoDAO = new EquipoDAO();// Inicializa el DAO
         this.sc = new Scanner(System.in);
     }
-    public void agregarEquipos(){
+    public static Equipo agregarEquipos(){
         System.out.println("\n--- Agregar Nuevo Equipo ---");
 
         String nombre = SolicitarValidarDatos.solicitarDato("Nombre", "Ingrese el nombre del equipo: ", "^[A-Za-zÁ-Úá-ú\\s]{2,50}$");
         LocalDate fechaFund = validarFecha("Fecha de fundacion","Teclea la fecha de fundacion del equipo");
-        String tipoStr  = SolicitarValidarDatos.solicitarDato("Tipo de equipo","Teclea el tipo de equipo que seras (Atacante o Defensor)","[Atacante|Defensor]");
+        String tipoStr  = SolicitarValidarDatos.solicitarDato("Tipo de equipo","Teclea el tipo de equipo que seras (Atacante o Defensor)","");
         tipoEquipo tipo = tipoEquipo.valueOf(tipoStr.toUpperCase());
 
         String idEquipo = CodigoAleatorioUnico.generarCodigoUnico();
 
-        Equipo equipo = new Equipo(idEquipo,nombre,fechaFund,tipo ,new ArrayList<>(),new ArrayList<>());
+        Equipo equipo = new Equipo(idEquipo,nombre,fechaFund,tipo);
         boolean agregado = equipoDAO.agregarEquipo(equipo);
         if (agregado){
             System.out.println("Equipo agregado correctamente");
         }else {
             System.out.println("Error: El equipo ya existe");
         }
+        return equipo;
     }
-    public void eliminarEquipo(){
+    public static Equipo eliminarEquipo(){
         System.out.println("\n--- Eliminar Equipo ---");
         String idEquipo = SolicitarValidarDatos.solicitarDato("ID del Equipo", "Ingrese el ID del equipo a eliminar: ", "");
         boolean eliminado = equipoDAO.eliminarEquipo(idEquipo);
@@ -48,25 +50,24 @@ public class EquipoController {
         }else {
             System.out.println("Error: No se encontro el equipo con el ID proporcionado");
         }
+        Equipo equipo = new Equipo(idEquipo,null,null,null);
+        return equipo;
     }
-    public void modificarEquipo() {
+    public static Equipo modificarEquipo() {
         System.out.println("\n--- Modificar Equipo ---");
         String idEquipo = SolicitarValidarDatos.solicitarDato("ID del Equipo", "Ingrese el ID del equipo a modificar: ", "[0-9]{5}");
 
         String nuevoNombre = SolicitarValidarDatos.solicitarDato("Nuevo Nombre", "Ingrese el nuevo nombre del equipo: ", "^[A-Za-zÁ-Úá-ú\\s]{2,50}$");
         LocalDate nuevaFecha = validarFecha("Nueva Fecha de Fundación", "Ingrese la nueva fecha de fundación (dd/MM/yyyy): ");
-        String nuevoTipoStr = SolicitarValidarDatos.solicitarDato("Nuevo Tipo de Equipo", "Ingrese el nuevo tipo de equipo (ATACANTE,DEFENSOR): ", "^(PROFESIONAL|AMATEUR|JUVENIL)$");
+        String nuevoTipoStr = SolicitarValidarDatos.solicitarDato("Nuevo Tipo de Equipo", "Ingrese el nuevo tipo de equipo (ATACANTE,DEFENSOR): ", "^(ATACANTE|DEFENSOR)$");
         tipoEquipo nuevoTipo = tipoEquipo.valueOf(nuevoTipoStr.toUpperCase());
 
-        boolean modificado = equipoDAO.modificarEquipo(idEquipo, nuevoNombre, nuevaFecha, nuevoTipo);
-        if (modificado) {
-            System.out.println("Equipo modificado correctamente.");
-        } else {
-            System.out.println("Error: No se encontró el equipo con el ID proporcionado.");
-        }
+        Equipo equipoModificado= equipoDAO.modificarEquipo(idEquipo, nuevoNombre, nuevaFecha, nuevoTipo);
+
+        return equipoModificado;
     }
 
-    public void listarEquipos() {
+    public static List<Equipo> listarEquipos() {
         System.out.println("\n--- Lista de Equipos ---");
         List<Equipo> equipos = equipoDAO.listarEquipos();
         if (equipos.isEmpty()) {
@@ -76,11 +77,33 @@ public class EquipoController {
                 System.out.println(equipo);
             }
         }
+        return equipos;
     }
 
     public void agregarJugadoresAEquipos(){
 
     }
+
+    public void verificarEquiposValidos() {
+        List<Equipo> equipos = equipoDAO.listarEquipos();
+
+        // Verificar que el número de equipos sea par
+        if (equipos.size() % 2 != 0) {
+            System.out.println("Error: El número de equipos debe ser par para el torneo.");
+            return;
+        }
+
+        // Verificar que cada equipo tenga entre 2 y 6 jugadores
+        for (Equipo equipo : equipos) {
+            int numJugadores = equipo.getListaJugadores().size();
+            if (numJugadores < 2 || numJugadores > 6) {
+                System.out.println("Error: El equipo " + equipo.getNombre() + " tiene " + numJugadores + " jugadores. Debe tener entre 2 y 6.");
+                return;
+            }
+        }
+        System.out.println("Todos los equipos son válidos.");
+    }
+
 
 
     public static LocalDate validarFecha(String dato, String mensaje){

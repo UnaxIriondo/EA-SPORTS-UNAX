@@ -28,7 +28,7 @@ public class EquipoDAO {
         return false;
     }
 
-    public boolean modificarEquipo(String idEquipo, String nuevoNombre, LocalDate nuevaFecha, tipoEquipo nuevoTipo) {
+    public Equipo modificarEquipo(String idEquipo, String nuevoNombre, LocalDate nuevaFecha, tipoEquipo nuevoTipo) {
         Equipo equipo = buscarEquipo(idEquipo);
         if (equipo != null) {
             if (nuevoNombre != null) {
@@ -40,9 +40,8 @@ public class EquipoDAO {
             if (nuevoTipo != null) {
                 equipo.setTipoEquipo(nuevoTipo);
             }
-            return true;
         }
-        return false; // Equipo no encontrado
+        return equipo; // Equipo no encontrado
     }
 
     public List<Equipo> listarEquipos() {

@@ -35,4 +35,31 @@ public class ComprobarTipoJuego {
         } while (!encontrado);
         return juegoValido;
     }
+    public static String comprobarTipoEquipo(String tipoEquipo) {
+        List<String> tiposJuego = new ArrayList<>();
+        for (tipoJuego tipo : tipoJuego.values()) {
+            tiposJuego.add(tipo.toString());
+        }
+
+        String juegoValido = "";
+        boolean encontrado = false;
+
+        do {
+            try {
+                if (tiposJuego.contains(tipoEquipo)) {
+                    juegoValido = tipoEquipo;
+                    encontrado = true;
+                } else {
+                    throw new TipoJuegoException();
+                }
+            } catch (TipoJuegoException e) {
+                System.out.println("Juego no encontrado");
+                tipoEquipo = ComprobarTipoJuego.comprobarTipoJuego(
+                        SolicitarValidarDatos.solicitarDato("Juego", "Introduzca el nombre del juego", "[A-Za-z]+").toLowerCase()
+                ).toString();
+            }
+        } while (!encontrado);
+        return juegoValido;
+    }
+
 }

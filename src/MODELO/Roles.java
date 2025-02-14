@@ -13,6 +13,10 @@ public class Roles {
         this.juego = juego;
     }
 
+    public Roles(List<String> rolesValorant) {
+        this.rolesValorant = rolesValorant;
+    }
+
     public Roles() {
     }
 

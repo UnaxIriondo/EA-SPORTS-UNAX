@@ -11,14 +11,14 @@ public class Jugador {
     private LocalDate fechaNac;
     private double sueldo;
     private Equipo equipo;
-    private rolesValorant rolesValorant;
-    private List<Jugador> listaJugadores;
+    private Roles roles;
+
     //Constructor
     public Jugador() {
 
     }
 
-    public Jugador(String idJugador, String nombre, String apellido, String nacionalidad, LocalDate fechaNac, double sueldo, Equipo equipo, rolesValorant rolesValorant) {
+    public Jugador(String idJugador, String nombre, String apellido, String nacionalidad, LocalDate fechaNac, double sueldo, Equipo equipo, Roles roles) {
         this.idJugador = idJugador;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -26,7 +26,7 @@ public class Jugador {
         this.fechaNac = fechaNac;
         this.sueldo = sueldo;
         this.equipo = equipo;
-        this.rolesValorant = rolesValorant;
+        this.roles = roles;
     }
 //Get y Set
 
@@ -86,12 +86,12 @@ public class Jugador {
         this.equipo = equipo;
     }
 
-    public rolesValorant getRolesValorant() {
-        return rolesValorant;
+    public Roles getRoles() {
+        return roles;
     }
 
-    public void setRolesValorant(rolesValorant rolesValorant) {
-        this.rolesValorant = rolesValorant;
+    public void setRoles(Roles roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class Jugador {
                 ", fechaNac=" + fechaNac +
                 ", sueldo=" + sueldo +
                 ", equipo=" + equipo +
-                ", rol=" + rolesValorant +
+                ", rol=" + roles +
                 '}';
     }
 }
