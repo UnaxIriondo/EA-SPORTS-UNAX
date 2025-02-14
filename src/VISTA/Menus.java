@@ -66,4 +66,14 @@ public class Menus {
         return opcion;
     }
 
+    public static String menuEnfrentamiento(){
+        System.out.println("---MENU ENFRENTAMIENTO---");
+        System.out.println("1. Crear Enfrentamientos");
+        System.out.println("2. Salir al menu principal");
+        System.out.println("3. Salir del programa");
+        String opcion = SolicitarValidarDatos.solicitarDato("Opción","Introduza la Opcion que desea ejecutar","[1|2|3]");
+
+        return opcion;
+    }
+
 }

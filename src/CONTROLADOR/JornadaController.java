@@ -8,8 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static MODELO.JornadaDAO.insertarJornada;
-import static MODELO.JornadaDAO.eliminarJornadaDAO;
-import static MODELO.JornadaDAO.modificarJornadaDAO;
+
 import static MODELO.JornadaDAO.mostrarJornadaDAO;
 import static MODELO.JornadaDAO.mostrarJornadasDAO;
 
