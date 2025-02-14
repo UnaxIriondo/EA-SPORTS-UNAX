@@ -23,16 +23,17 @@ public class JugadorDAO {
 
     // Método para eliminar un jugador
     public boolean eliminarJugador(String idJugador) {
-        Jugador jugador = buscarJugador(idJugador);
-        if (jugador != null) {
-            listaJugadores.remove(jugador);
-            return true;
+        for (Jugador jugador : listaJugadores) {
+            if (jugador.getIdJugador().equals(idJugador)) {
+                listaJugadores.remove(jugador);
+                return true;
+            }
         }
         return false;
     }
 
     // Método para modificar un jugador
-    public boolean modificarJugador(String idJugador, String nuevoNombre, String nuevoApellido, String nuevaNacionalidad, LocalDate nuevaFechaNac, double nuevoSueldo, Equipo nuevoEquipo, rolesValorant nuevoRol) {
+    public boolean modificarJugador(String idJugador, String nuevoNombre, String nuevoApellido, String nuevaNacionalidad, LocalDate nuevaFechaNac, double nuevoSueldo, Equipo nuevoEquipo, Roles nuevoRol) {
         Jugador jugador = buscarJugador(idJugador);
         if (jugador != null) {
             jugador.setNombre(nuevoNombre);
@@ -41,7 +42,7 @@ public class JugadorDAO {
             jugador.setFechaNac(nuevaFechaNac);
             jugador.setSueldo(nuevoSueldo);
             jugador.setEquipo(nuevoEquipo);
-            jugador.setRolesValorant(nuevoRol);
+            jugador.setRoles(nuevoRol);
             return true;
         }
         return false;

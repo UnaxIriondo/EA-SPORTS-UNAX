@@ -14,4 +14,8 @@ public class JuegoDAO {
 
         return juego;
     }
+
+    public static void comprobarRoles(Roles roles){
+
+    }
 }

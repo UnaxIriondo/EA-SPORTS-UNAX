@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class JugadorController {
-    private JugadorDAO jugadorDAO;
-    private Scanner sc;
-    private EquipoDAO equipoDAO;
+    private static JugadorDAO jugadorDAO;
+    private static Scanner sc;
+    private static EquipoDAO equipoDAO;
+    private static Jugador jugador;
 
     // Constructor
     public JugadorController() {
@@ -27,7 +28,7 @@ public class JugadorController {
     }
 
     // Mét0do para agregar un jugador
-    public void agregarJugador() {
+    public static Jugador agregarJugador(Equipo equipo) {
         System.out.println("\n--- Agregar Nuevo Jugador ---");
 
         String idJugador = SolicitarValidarDatos.solicitarDato("ID del Jugador", "Ingrese el ID del jugador: ", "^[A-Za-z0-9]{1,10}$");
@@ -37,32 +38,39 @@ public class JugadorController {
         LocalDate fechaNac = validarFecha("Fecha de Nacimiento", "Ingrese la fecha de nacimiento (dd/MM/yyyy): ");
         double sueldo = Double.parseDouble(SolicitarValidarDatos.solicitarDato("Sueldo", "Ingrese el sueldo del jugador: ", "^[0-9]+(\\.[0-9]{1,2})?$"));
 
-        System.out.print("Ingrese el ID del equipo: ");
-        String idEquipo = sc.nextLine();
-        Equipo equipo = seleccionarEquipo();
+        String rolStr  = SolicitarValidarDatos.solicitarDato("Rol de valorant","Teclea el rol que seras (duelista,centinela,controlador,iniciador)","[duelista|centinela|controlador|iniciador]").toLowerCase();
+        Roles rol = new Roles(RolesDAO.obtenerRoles());
+
+
+
+        System.out.println("\nSeleccione un equipo:");
+        equipo = seleccionarEquipo();
         if (equipo == null) {
-            System.out.println("No se pudo asignar un equipo al jugador.");
-            return;
+            System.out.println("No se pudo asignar un equipo.");
+            agregarJugador(equipo);
         }
-
-        String rolStr  = SolicitarValidarDatos.solicitarDato("Rol de valorant","Teclea el rol que seras (duelista,centinela,controlador,iniciador)","[duelista|centinela|controlador|iniciador]");
-        rolesValorant rol = rolesValorant.valueOf(rolStr.toLowerCase());
-
-        Jugador jugador = new Jugador(idJugador, nombre, apellido, nacionalidad, fechaNac, sueldo, equipo, rol);
+        if (equipo.getListaJugadores().size() >= 6) {
+            System.out.println("Error: Este equipo ya tiene el máximo de 6 jugadores.");
+            agregarJugador(equipo);
+        }
+        if (!rol.getRolesValorant().contains(rolStr)){
+            System.out.println("Error: Rol no encontrado");
+            agregarJugador(equipo);
+        }
+        jugador = new Jugador(idJugador, nombre, apellido, nacionalidad, fechaNac, sueldo, equipo, rol);
         boolean agregado = jugadorDAO.agregarJugador(jugador);
 
         if (agregado) {
+            equipo.agregarJugador(jugador);
             System.out.println("Jugador agregado correctamente.");
         } else {
             System.out.println("Error: El jugador ya existe.");
         }
-
-        listaJugadores.add(jugador);
-
+        return jugador;
     }
 
     // Mét0do para eliminar un jugador
-    public void eliminarJugador() {
+    public static Jugador eliminarJugador() {
         System.out.println("\n--- Eliminar Jugador ---");
         String idJugador = SolicitarValidarDatos.solicitarDato("ID del Jugador", "Ingrese el ID del jugador a eliminar: ", "^[A-Za-z0-9]{1,10}$");
 
@@ -72,11 +80,19 @@ public class JugadorController {
         } else {
             System.out.println("Error: No se encontró el jugador con el ID proporcionado.");
         }
-        listajugadores.remove(jugador);
+
+        eliminado = jugadorDAO.eliminarJugador(idJugador);
+        if (eliminado) {
+            jugador.getEquipo().eliminarJugador(jugador); // Eliminar el jugador del equipo
+            System.out.println("Jugador eliminado correctamente.");
+        } else {
+            System.out.println("Error: No se pudo eliminar el jugador.");
+        }
+        return jugador;
     }
 
     // Mét0do para modificar un jugador
-    public void modificarJugador() {
+    public static Jugador modificarJugador() {
         System.out.println("\n--- Modificar Jugador ---");
         String idJugador = SolicitarValidarDatos.solicitarDato("ID del Jugador", "Ingrese el ID del jugador a modificar: ", "^[A-Za-z0-9]{1,10}$");
 
@@ -91,23 +107,26 @@ public class JugadorController {
         Equipo nuevoEquipo = seleccionarEquipo();
         if (nuevoEquipo == null) {
             System.out.println("No se pudo asignar un equipo al jugador.");
-            return;
+            modificarJugador();
         }
 
-        System.out.print("Ingrese el nuevo rol del jugador (JUGADOR, ENTRENADOR, ASISTENTE): ");
-        String nuevoRolStr = sc.nextLine().toUpperCase();
-        rolesValorant nuevoRol = rolesValorant.valueOf(nuevoRolStr);
-
-        boolean modificado = jugadorDAO.modificarJugador(idJugador, nuevoNombre, nuevoApellido, nuevaNacionalidad, nuevaFechaNac, nuevoSueldo, nuevoEquipo, nuevoRol);
+        String nuevoRolStr = SolicitarValidarDatos.solicitarDato("Rol de valorant","Teclea el rol que seras (duelista,centinela,controlador,iniciador)","[duelista|centinela|controlador|iniciador]").toLowerCase();
+        Roles rol = new Roles(RolesDAO.obtenerRoles());
+        if (!rol.getRolesValorant().contains(nuevoRolStr)){
+            System.out.println("Error: Rol no encontrado");
+            modificarJugador();
+        }
+        boolean modificado = jugadorDAO.modificarJugador(idJugador, nuevoNombre, nuevoApellido, nuevaNacionalidad, nuevaFechaNac, nuevoSueldo, nuevoEquipo, rol);
         if (modificado) {
             System.out.println("Jugador modificado correctamente.");
         } else {
             System.out.println("Error: No se encontró el jugador con el ID proporcionado.");
         }
+        return jugador;
     }
 
     // Mét0do para listar todos los jugadores
-    public void listarJugadores() {
+    public static void listarJugadores() {
         System.out.println("\n--- Lista de Jugadores ---");
         List<Jugador> jugadores = jugadorDAO.listarJugadores();
         if (jugadores.isEmpty()) {
@@ -120,7 +139,7 @@ public class JugadorController {
     }
 
     //Método para seleccionar un equipo
-    private Equipo seleccionarEquipo() {
+    private static Equipo seleccionarEquipo() {
         System.out.println("\n--- Seleccionar Equipo ---");
         List<Equipo> equipos = equipoDAO.listarEquipos();
         if (equipos.isEmpty()) {

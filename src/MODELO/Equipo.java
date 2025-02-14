@@ -25,6 +25,13 @@ public class Equipo {
         this.listaEnfrentamientos = new ArrayList<>();
     }
 
+    public Equipo(String idEquipo, String nombre, LocalDate fechaFund, MODELO.tipoEquipo tipoEquipo) {
+        this.idEquipo = idEquipo;
+        this.nombre = nombre;
+        this.fechaFund = fechaFund;
+        this.tipoEquipo = tipoEquipo;
+    }
+
     public String getIdEquipo() {
         return idEquipo;
     }
@@ -84,19 +91,14 @@ public class Equipo {
     }
 
     public void agregarJugador(Jugador jugador) {
-        if (listaJugadores == null) {
-            listaJugadores = new ArrayList<>();
+        if (!listaJugadores.contains(jugador)) {
+            listaJugadores.add(jugador);
+            jugador.setEquipo(this); // Vincular el jugador con el equipo
         }
-        listaJugadores.add(jugador);
+    }
+    public void eliminarJugador(Jugador jugador) {
+        listaJugadores.remove(jugador);
     }
 
-    @Override
-    public String toString() {
-        return "Equipo{" +
-                "idEquipo='" + idEquipo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", fechaFund=" + fechaFund +
-                ", tipoEquipo=" + tipoEquipo +
-                '}';
-    }
+
 }

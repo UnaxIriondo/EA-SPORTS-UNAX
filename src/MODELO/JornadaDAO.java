@@ -10,33 +10,7 @@ public class JornadaDAO {
         System.out.println("Jornada creada con éxito.");
     }
 
-    public static void eliminarJornadaDAO(ArrayList<Jornada> listaJornadas, String idJornada) {
-        Jornada jornadaAEliminar = null;
-        for (Jornada jornada : listaJornadas) {
-            if (jornada.getNumJornada().equals(idJornada)) {
-                jornadaAEliminar = jornada;
-                break;
-            }
-        }
 
-        if (jornadaAEliminar != null) {
-            listaJornadas.remove(jornadaAEliminar);
-            System.out.println("Jornada eliminada con éxito.");
-        } else {
-            System.out.println("Jornada no encontrada.");
-        }
-    }
-
-    public static void modificarJornadaDAO(ArrayList<Jornada> listaJornadas, String idJornada, LocalDate nuevaFecha) {
-        for (Jornada jornada : listaJornadas) {
-            if (jornada.getNumJornada().equals(idJornada)) {
-                jornada.setFechaInicio(nuevaFecha);
-                System.out.println("Jornada modificada con éxito.");
-                return;
-            }
-        }
-        System.out.println("Jornada no encontrada.");
-    }
 
     public static void mostrarJornadaDAO(ArrayList<Jornada> listaJornadas, String idJornada) {
         for (Jornada jornada : listaJornadas) {
