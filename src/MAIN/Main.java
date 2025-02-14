@@ -42,7 +42,7 @@ public class Main {
     public static void menuPrincipal() {
         String respuesta = Menus.menuPrincipal();
         try {
-            while (!respuesta.equals("2")) {
+            while (!respuesta.equals("5")) {
                 switch (respuesta) {
                     case "1":
                         menuEquipo();
