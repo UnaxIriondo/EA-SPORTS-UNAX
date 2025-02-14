@@ -5,54 +5,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JugadorDAO {
-    private static List<Jugador> listajugadores;
+    private List<Jugador> listaJugadores;
 
+    // Constructor
     public JugadorDAO() {
-        this.listajugadores = new ArrayList<>();
+        this.listaJugadores = new ArrayList<>();
     }
 
+    // Método para agregar un jugador
     public boolean agregarJugador(Jugador jugador) {
-        if (buscarjugador(jugador.getIdJugador()) ==null ){
-            listajugadores.add(jugador);
+        if (buscarJugador(jugador.getIdJugador()) == null) {
+            listaJugadores.add(jugador);
             return true;
         }
         return false;
     }
 
+    // Método para eliminar un jugador
     public boolean eliminarJugador(String idJugador) {
-        Jugador jugador = buscarjugador(idJugador);
+        Jugador jugador = buscarJugador(idJugador);
         if (jugador != null) {
-            listajugadores.remove(jugador);
+            listaJugadores.remove(jugador);
             return true;
         }
         return false;
     }
 
-    public boolean modificarJugador( String idJugador, String nuevoNombre, String nuevoApellido, String nuevaNacionalidad, LocalDate nuevaFechaNac, double nuevoSueldo, Equipo equipo, Roles nuevoRol) {
-        Jugador jugador = buscarjugador(idJugador);
+    // Método para modificar un jugador
+    public boolean modificarJugador(String idJugador, String nuevoNombre, String nuevoApellido, String nuevaNacionalidad, LocalDate nuevaFechaNac, double nuevoSueldo, Equipo nuevoEquipo, rolesValorant nuevoRol) {
+        Jugador jugador = buscarJugador(idJugador);
         if (jugador != null) {
-            if ()
+            jugador.setNombre(nuevoNombre);
+            jugador.setApellido(nuevoApellido);
+            jugador.setNacionalidad(nuevaNacionalidad);
+            jugador.setFechaNac(nuevaFechaNac);
+            jugador.setSueldo(nuevoSueldo);
+            jugador.setEquipo(nuevoEquipo);
+            jugador.setRolesValorant(nuevoRol);
+            return true;
         }
+        return false;
     }
 
+    // Método para listar todos los jugadores
+    public List<Jugador> listarJugadores() {
+        return new ArrayList<>(listaJugadores);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-    public Jugador buscarjugador(String idJugador) {
-        for (Jugador jugador : listajugadores) {
-            if (jugador.getIdJugador().equals(idJugador)){
+    // Método para buscar un jugador por ID
+    public Jugador buscarJugador(String idJugador) {
+        for (Jugador jugador : listaJugadores) {
+            if (jugador.getIdJugador().equals(idJugador)) {
                 return jugador;
             }
         }
         return null;
     }
+
+
 }

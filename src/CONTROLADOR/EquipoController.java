@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class EquipoController {
@@ -48,7 +47,7 @@ public class EquipoController {
             System.out.println("Equipo eliminado correctamente");
         }else {
             System.out.println("Error: No se encontro el equipo con el ID proporcionado");
-            }
+        }
     }
     public void modificarEquipo() {
         System.out.println("\n--- Modificar Equipo ---");
@@ -77,6 +76,10 @@ public class EquipoController {
                 System.out.println(equipo);
             }
         }
+    }
+
+    public void agregarJugadoresAEquipos(){
+
     }
 
 

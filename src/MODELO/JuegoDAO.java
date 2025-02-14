@@ -7,9 +7,6 @@ import UTILITIS.SolicitarValidarDatos;
 public class JuegoDAO {
 
     public static Juego crearJuego() {
-
-
-
         int id = Integer.parseInt(CodigoAleatorioUnico.generarCodigo());
         String nombre = ComprobarTipoJuego.comprobarTipoJuego(SolicitarValidarDatos.solicitarDato("Juego","Introduzca el nombre del juego","[A-Za-z]").toLowerCase()).toString();
 

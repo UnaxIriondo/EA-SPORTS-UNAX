@@ -9,7 +9,6 @@ public class CompeticionDAO {
     public static Competicion abrirCompeticion(Competicion competicion) {
         competicion.setEstado(estadoCompeticion.abierto);
         competicion.setIdCompeticion(CodigoAleatorioUnico.generarCodigo());
-        competicion.setJuego(JuegoController.crearJuego());
         return competicion;
     }
 
