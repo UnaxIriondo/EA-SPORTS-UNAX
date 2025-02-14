@@ -8,28 +8,36 @@ public class Equipo {
     private String idEquipo;
     private String nombre;
     private LocalDate fechaFund;
-    private tipoEquipo tipoEquipo;
     private List<Jugador> listaJugadores;
     private List<Enfrentamiento> listaEnfrentamientos;
 
-    public Equipo(String idEquipo, String nombre, LocalDate fechaFund, MODELO.tipoEquipo tipoEquipo, List<Jugador> listaJugadores, List<Enfrentamiento> listaEnfrentamientos) {
+    public Equipo(String idEquipo, String nombre, LocalDate fechaFund) {
         this.idEquipo = idEquipo;
         this.nombre = nombre;
         this.fechaFund = fechaFund;
-        this.tipoEquipo = tipoEquipo;
+    }
+
+    public Equipo(String idEquipo, String nombre, LocalDate fechaFund, List<Jugador> listaJugadores, List<Enfrentamiento> listaEnfrentamientos) {
+        this.idEquipo = idEquipo;
+        this.nombre = nombre;
+        this.fechaFund = fechaFund;
         this.listaJugadores = listaJugadores;
         this.listaEnfrentamientos = listaEnfrentamientos;
     }
+
     public Equipo() {
         this.listaJugadores = new ArrayList<>();
         this.listaEnfrentamientos = new ArrayList<>();
+    }
+
+    public Equipo(String idEquipo) {
+        this.idEquipo = idEquipo;
     }
 
     public Equipo(String idEquipo, String nombre, LocalDate fechaFund, MODELO.tipoEquipo tipoEquipo) {
         this.idEquipo = idEquipo;
         this.nombre = nombre;
         this.fechaFund = fechaFund;
-        this.tipoEquipo = tipoEquipo;
     }
 
     public String getIdEquipo() {
@@ -56,13 +64,6 @@ public class Equipo {
         this.fechaFund = fechaFund;
     }
 
-    public MODELO.tipoEquipo getTipoEquipo() {
-        return tipoEquipo;
-    }
-
-    public void setTipoEquipo(MODELO.tipoEquipo tipoEquipo) {
-        this.tipoEquipo = tipoEquipo;
-    }
 
     public List<Jugador> getListaJugadores() {
         return listaJugadores;
@@ -86,7 +87,6 @@ public class Equipo {
                 "idEquipo='" + idEquipo + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", fechaFund=" + fechaFund +
-                ", tipoEquipo=" + tipoEquipo +
                 '}';
     }
 

@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EquipoDAO {
-    private List<Equipo> listaequipos;
+    private static List<Equipo> listaequipos = new ArrayList<>();
 
     public EquipoDAO() {
         this.listaequipos = new ArrayList<>();
     }
 
-    public boolean agregarEquipo(Equipo equipo) {
+    public static boolean agregarEquipo(Equipo equipo) {
         if (buscarEquipo(equipo.getIdEquipo()) == null) {
             listaequipos.add(equipo);
             return true;
@@ -19,7 +19,7 @@ public class EquipoDAO {
         return false;
     }
 
-    public boolean eliminarEquipo(String idEquipo) {
+    public static boolean eliminarEquipo(String idEquipo) {
         Equipo equipo = buscarEquipo(idEquipo);
         if (equipo != null) {
             listaequipos.remove(equipo);
@@ -28,7 +28,7 @@ public class EquipoDAO {
         return false;
     }
 
-    public Equipo modificarEquipo(String idEquipo, String nuevoNombre, LocalDate nuevaFecha, tipoEquipo nuevoTipo) {
+    public static Equipo modificarEquipo(String idEquipo, String nuevoNombre, LocalDate nuevaFecha, tipoEquipo nuevoTipo) {
         Equipo equipo = buscarEquipo(idEquipo);
         if (equipo != null) {
             if (nuevoNombre != null) {
@@ -37,18 +37,15 @@ public class EquipoDAO {
             if (nuevaFecha != null) {
                 equipo.setFechaFund(nuevaFecha);
             }
-            if (nuevoTipo != null) {
-                equipo.setTipoEquipo(nuevoTipo);
-            }
         }
         return equipo; // Equipo no encontrado
     }
 
-    public List<Equipo> listarEquipos() {
+    public static List<Equipo> listarEquipos() {
         return new ArrayList<>(listaequipos);
     }
 
-    public Equipo buscarEquipo(String idEquipo) {
+    public static Equipo buscarEquipo(String idEquipo) {
         for (Equipo equipo : listaequipos) {
             if (equipo.getIdEquipo().equals(idEquipo)) {
                 return equipo;

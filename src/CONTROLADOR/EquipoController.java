@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class EquipoController {
     private static EquipoDAO equipoDAO;
     private Scanner sc;
-
+    private static Equipo equipo;
     public EquipoController() {
         this.equipoDAO = new EquipoDAO();// Inicializa el DAO
         this.sc = new Scanner(System.in);
@@ -27,13 +27,11 @@ public class EquipoController {
 
         String nombre = SolicitarValidarDatos.solicitarDato("Nombre", "Ingrese el nombre del equipo: ", "^[A-Za-zÁ-Úá-ú\\s]{2,50}$");
         LocalDate fechaFund = validarFecha("Fecha de fundacion","Teclea la fecha de fundacion del equipo");
-        String tipoStr  = SolicitarValidarDatos.solicitarDato("Tipo de equipo","Teclea el tipo de equipo que seras (Atacante o Defensor)","");
-        tipoEquipo tipo = tipoEquipo.valueOf(tipoStr.toUpperCase());
 
         String idEquipo = CodigoAleatorioUnico.generarCodigoUnico();
 
-        Equipo equipo = new Equipo(idEquipo,nombre,fechaFund,tipo);
-        boolean agregado = equipoDAO.agregarEquipo(equipo);
+        equipo = new Equipo(idEquipo,nombre,fechaFund);
+        boolean agregado = EquipoDAO.agregarEquipo(equipo);
         if (agregado){
             System.out.println("Equipo agregado correctamente");
         }else {
@@ -43,14 +41,14 @@ public class EquipoController {
     }
     public static Equipo eliminarEquipo(){
         System.out.println("\n--- Eliminar Equipo ---");
-        String idEquipo = SolicitarValidarDatos.solicitarDato("ID del Equipo", "Ingrese el ID del equipo a eliminar: ", "");
-        boolean eliminado = equipoDAO.eliminarEquipo(idEquipo);
+        String idEquipo = SolicitarValidarDatos.solicitarDato("ID del Equipo", "Ingrese el ID del equipo a eliminar: ", "[0-9]{5}");
+        boolean eliminado = EquipoDAO.eliminarEquipo(idEquipo);
         if (eliminado){
             System.out.println("Equipo eliminado correctamente");
         }else {
             System.out.println("Error: No se encontro el equipo con el ID proporcionado");
         }
-        Equipo equipo = new Equipo(idEquipo,null,null,null);
+        equipo = new Equipo(idEquipo,null,null,null);
         return equipo;
     }
     public static Equipo modificarEquipo() {

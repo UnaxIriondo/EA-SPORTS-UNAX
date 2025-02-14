@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import static MODELO.EnfrentamientoDAO.ModificarEnfrentamiento;
 import static MODELO.EnfrentamientoDAO.insertarEnfrentamiento;
 
-public class EnfrentamientoController {
+public class
+EnfrentamientoController {
     public static void crearEnfrentamiento(Jornada jornada, ArrayList<Equipo> listaEquipos) {
         String idEnfrentamiento = SolicitarValidarDatos.solicitarDato("Id Enfrentamiento", "Teclea el id del enfrentamiento (alfanumérico)", "^[a-zA-Z0-9]+$");
         String resultado = SolicitarValidarDatos.solicitarDato("Resultado", "Teclea el resultado del enfrentamiento (formato: N-N)", "^\\d{1,2}-\\d{1,2}$");

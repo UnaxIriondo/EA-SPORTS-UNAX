@@ -8,6 +8,7 @@ import MODELO.Competicion;
 import MODELO.Equipo;
 import MODELO.Jornada;
 import MODELO.Jugador;
+import UTILITIS.CodigoAleatorioUnico;
 import VISTA.Menus;
 
 import java.util.ArrayList;
@@ -51,6 +52,9 @@ public class Main {
                         break;
                     case "3":
                         menuJornada();
+                        break;
+                    case "4":
+                        menuEnfrentamiento();
                     case "5":
                         //SALIR
                         System.exit(0);
@@ -81,7 +85,7 @@ public class Main {
                         break;
                     case "4":
                         //LISTAR EQUIPO
-                        listaEquipos.add(EquipoController.listarEquipos().get(0));
+                        System.out.println(listaEquipos);
                     case "6":
                         //VOLVER AL MENU PRINCIPAL
                         menuPrincipal();
@@ -91,9 +95,9 @@ public class Main {
                         System.exit(0);
                         break;
                 }
-            }while(!respuesta.equals("2"));
+            }while(!respuesta.equals("7"));
         } catch (Exception e) {
-            System.out.println("Error desconocido en el menu.");
+            System.out.println("Error desconocido en el menu."+e.getMessage());
         }
     }
 
@@ -126,7 +130,7 @@ public class Main {
                         System.exit(0);
                         break;
                 }
-            }while(!respuesta.equals("2"));
+            }while(!respuesta.equals("7"));
         } catch (Exception e) {
             System.out.println("Error desconocido en el menu.");
         }
@@ -143,25 +147,21 @@ public class Main {
                         //listaJornadas.add(JornadaController.crearJornada());
                         break;
                     case "2":
-                        //MOSTRAR JORNADA
-                        //listaJornadas.add(JornadaController.mostrarJornada);
-                        break;
-                    case "3":
-                        //MOSTRAR JORNADAS
-                        //listaJornadas.add(JornadaController.mostrarJornadas);
-                        break;
-                    case "4":
                         //VOLVER AL MENU PRINCIPAL
                         menuPrincipal();
                         break;
-                    case "5":
+                    case "3":
                         //SALIR
                         System.exit(0);
                         break;
                 }
-            }while(!respuesta.equals("2"));
+            }while(!respuesta.equals("3"));
         } catch (Exception e) {
             System.out.println("Error desconocido en el menu.");
         }
+    }
+    public static void menuEnfrentamiento(){
+        String respuesta;
+
     }
 }
